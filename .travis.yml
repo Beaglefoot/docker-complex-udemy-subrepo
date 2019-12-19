@@ -14,4 +14,9 @@ after_success:
   - docker build -t beaglefoot/multi-server ./server
   - docker build -t beaglefoot/multi-worker ./worker
   # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push images to Docker hub
+  - docker push -t beaglefoot/multi-client
+  - docker push -t beaglefoot/multi-nginx
+  - docker push -t beaglefoot/multi-server
+  - docker push -t beaglefoot/multi-worker
